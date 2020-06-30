@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import Chart from "./components/Chart";
 import Counter from "./components/Counter";
+import ToastComponent from './components/ToastComponent';
+
+
 
 class App extends Component {
   constructor() {
@@ -49,6 +52,7 @@ class App extends Component {
       <div className="App">
         <Chart chartData={this.state.chartData}/>
         <Counter />
+        <ToastComponent/>
       </div>
     );
   }
