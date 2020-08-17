@@ -3,21 +3,44 @@ import "./App.css";
 import Chart from "./components/Chart";
 import Counter from "./components/Counter";
 import ToastComponent from './components/ToastComponent';
-import Recaptcha from 'react-recaptcha-v3';
+import Recaptcha from 'react-recaptcha';
 
 
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      chartData: {}
+      chartData: {},
+      isVerified: false
     }
+
+    this.handleSubscribe = this.handleSubscribe.bind(this);
+    this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
+    this.verifyCallback = this.verifyCallback.bind(this);
   }
 
   componentWillMount() {
     this.getChartData();
+  }
+
+  handleSubscribe() {
+    if (this.state.isVerified) {
+      alert("You have successfully subscribed!")
+    } else {
+      alert("Please verify that you are a human!")
+    }
+  }
+
+  recaptchaLoaded() {
+    console.log("capcha successfully loaded")
+  }
+
+  verifyCallback(response) {
+    if(response) {
+      this.setState({isVerified: true})
+    }
   }
 
   getChartData(){
@@ -56,6 +79,13 @@ class App extends Component {
         <div className="convert" onClick={this.handleSubscribe}>
             Subscribe
         </div>
+
+        <Recaptcha
+          sitekey="6LcjHcAZAAAAAHry99oxKYIi_RDGnmbEK7MhSjCK"
+          render="explicit"
+          onloadCallback={this.recaptchaLoaded}
+          verifyCallback={this.verifyCallback}
+        />
 
         <Chart chartData={this.state.chartData}/>
         <Counter />
