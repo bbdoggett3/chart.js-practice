@@ -3,6 +3,7 @@ import "./App.css";
 import Chart from "./components/Chart";
 import Counter from "./components/Counter";
 import ToastComponent from './components/ToastComponent';
+import Recaptcha from 'react-recaptcha-v3';
 
 
 
@@ -50,6 +51,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input type="text" placeholder="email@company.com"/>
+
+        <div className="convert" onClick={this.handleSubscribe}>
+            Subscribe
+        </div>
+
         <Chart chartData={this.state.chartData}/>
         <Counter />
         <ToastComponent/>
