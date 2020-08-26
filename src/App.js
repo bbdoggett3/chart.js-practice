@@ -4,6 +4,7 @@ import Chart from "./components/Chart";
 import Counter from "./components/Counter";
 import ToastComponent from './components/ToastComponent';
 import Recaptcha from 'react-recaptcha';
+import Typing from './components/Typing';
 
 
 
@@ -90,6 +91,7 @@ class App extends Component {
         <Chart chartData={this.state.chartData}/>
         <Counter />
         <ToastComponent/>
+        <Typing/>
       </div>
     );
   }
